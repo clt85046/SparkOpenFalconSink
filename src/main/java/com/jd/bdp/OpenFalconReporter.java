@@ -4,7 +4,7 @@ import com.codahale.metrics.*;
 import com.codahale.metrics.Timer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import java.net.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -263,9 +263,13 @@ public class OpenFalconReporter extends ScheduledReporter {
     }
 
     private String getEndpoint(String name) {
-        String[] array = name.split("\\.");
-        if(array.length > 0) {
-            return array[0];
+        String endpoint = null;
+        try{
+            endpoint = InetAddress.getLocalHost().getHostName();
+        }
+        catch(Exception e){}
+        if(endpoint.length() > 0) {
+            return endpoint;
         }
         return name;
     }
