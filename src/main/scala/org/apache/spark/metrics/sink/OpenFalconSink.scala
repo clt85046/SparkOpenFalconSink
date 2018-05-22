@@ -31,7 +31,7 @@ class OpenFalconSink(val property: Properties,
 
   def propertyToOption(prop: String): Option[String] = Option(property.getProperty(prop))
 
-  val host = propertyToOption(OPEN_FALCON_KEY_HOST).getOrElse("127.0.0.1")
+  val host = propertyToOption(OPEN_FALCON_KEY_HOST).getOrElse("127.0.0.1")   //agent ip
   val port = propertyToOption(OPEN_FALCON_KEY_PORT).getOrElse("1988").toInt
 
   val pollPeriod = propertyToOption(OPEN_FALCON_KEY_PERIOD) match {
